@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Click the Button Game!</title>
+  <style>
+    body {
+      background: #222;
+      color: #eee;
+      font-family: sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    h1 {
+      margin-top: 0;
+    }
+    #gameArea {
+      margin: auto;
+      background: #333;
+      padding: 2em;
+      border-radius: 1em;
+      box-shadow: 0 0 10px #000a;
+      width: 310px;
+    }
+    #gameButton {
+      font-size: 2em;
+      padding: 1em 2em;
+      border: none;
+      border-radius: 0.5em;
+      background: #4caf50;
+      color: white;
+      cursor: pointer;
+      margin: 1em 0;
+      transition: background 0.2s;
+    }
+    #gameButton:active {
+      background: #388e3c;
+    }
+    #score {
+      font-size: 1.5em;
+      margin: 1em 0;
+    }
+    #timer {
+      font-size: 1.2em;
+      margin-bottom: 1em;
+    }
+    #startButton {
+      padding: 0.7em 2em;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 0.5em;
+      background: #2196f3;
+      color: white;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    #startButton:active {
+      background: #1976d2;
+    }
+  </style>
+</head>
+<body>
+  <div id="gameArea">
+    <h1>Click the Button!</h1>
+    <div id="timer">Time: <span id="timeLeft">10</span>s</div>
+    <div id="score">Score: <span id="scoreValue">0</span></div>
+    <button id="gameButton" disabled>Click Me!</button>
+    <br/>
+    <button id="startButton">Start Game</button>
+    <div id="result" style="margin-top:1em;"></div>
+  </div>
+  <script>
+    const gameButton = document.getElementById('gameButton');
+    const startButton = document.getElementById('startButton');
+    const scoreValue = document.getElementById('scoreValue');
+    const timeLeft = document.getElementById('timeLeft');
+    const result = document.getElementById('result');
+
+    let score = 0;
+    let time = 10;
+    let timerId = null;
+    let playing = false;
+
+    function updateScore() {
+      scoreValue.textContent = score;
+    }
+
+    function updateTime() {
+      timeLeft.textContent = time;
+    }
+
+    function endGame() {
+      playing = false;
+      clearInterval(timerId);
+      gameButton.disabled = true;
+      result.innerHTML = `<strong>Game Over!</strong><br/>Your score: <span style="color:#4caf50">${score}</span>`;
+      startButton.disabled = false;
+    }
+
+    function startGame() {
+      score = 0;
+      time = 10;
+      updateScore();
+      updateTime();
+      result.textContent = '';
+      playing = true;
+      gameButton.disabled = false;
+      startButton.disabled = true;
+      timerId = setInterval(() => {
+        time--;
+        updateTime();
+        if (time <= 0) endGame();
+      }, 1000);
+    }
+
+    gameButton.addEventListener('click', () => {
+      if (!playing) return;
+      score++;
+      updateScore();
+    });
+
+    startButton.addEventListener('click', startGame);
+
+    // Initial state
+    gameButton.disabled = true;
+    updateScore();
+    updateTime();
+  </script>
+</body>
+</html>
