@@ -17,6 +17,8 @@ Ik ga hier nu aan werken ik update dit later met meer info "12:10" 8-7-2025
 
 ### Game is na kort te werken klaar met bijbehorende uitleg V "12:30" 8-7-2025
 
+### Voor nu heeft de game nog veel errors ga er hopelijk ooit nog aan werken als ik tijd en zin heb in mn vakantie!! "12:33" 8-7-2025
+
 # Advanced Clicker Game - Installatie en Gebruik
 
 ## 1. React-project aanmaken (indien nodig)
