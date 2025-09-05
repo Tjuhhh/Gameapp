@@ -85,6 +85,6 @@ ik heb gelijk iets nieuws bijgevoegd een nieuwe clicker game
 om te spelen maak een nieuw tekstblok met de naam 
 '''bash
 index.html
-'''bash
+'''
 en plak daarin de tekst uit index.html (te vinden in bestanden)
 Veel speelplezier!!
