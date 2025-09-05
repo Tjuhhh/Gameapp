@@ -244,7 +244,7 @@ Om te spelen maak een tekstblok aan met de naam
 index2.html
 ```
 Daarna voeg je de tekst in van het bestand index2.html of kopieer je het hieronder V
-'''bash
+```bash
 <!DOCTYPE html>
 <html lang="nl">
 <head>
