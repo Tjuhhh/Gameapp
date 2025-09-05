@@ -27,6 +27,7 @@ Open je terminal en voer de volgende commando's uit:
 
 ```bash
 npx create-react-app mijn-clicker-game
+
 cd mijn-clicker-game
 ```
 
@@ -80,3 +81,10 @@ Veel plezier!
 
 ### Start van schooljaar 11:50  5-9-2025
 het was een lange 6 weken maar ik ben weer actief op github!! 
+ik heb gelijk iets nieuws bijgevoegd een nieuwe clicker game 
+om te spelen maak een nieuw tekstblok met de naam 
+'''bash
+index.html
+'''bash
+en plak daarin de tekst uit index.html (te vinden in bestanden)
+Veel speelplezier!!
