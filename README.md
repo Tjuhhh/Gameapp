@@ -77,3 +77,6 @@ Je hoeft niets toe te voegen aan de browserconsole of extra pakketten te install
 Alle instellingen en voortgang worden lokaal opgeslagen.
 
 Veel plezier!
+
+### Start van schooljaar 11:50  5-9-2025
+het was een lange 6 weken maar ik ben weer actief op github!! 
