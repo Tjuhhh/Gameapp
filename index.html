@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clicker Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .game-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .upgrades {
+            margin-top: 20px;
+        }
+
+        .stats {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Clicker Game</h1>
+        <div class="click-area">
+            <button id="clickButton">Klik hier!</button>
+            <p>Clicks: <span id="clickCount">0</span></p>
+        </div>
+        
+        <div class="upgrades">
+            <h2>Upgrades</h2>
+            <div id="upgradeContainer"></div>
+        </div>
+
+        <div class="stats">
+            <p>Clicks per seconde: <span id="clicksPerSecond">0</span></p>
+            <p>Saldo: <span id="currency">0</span> 💰</p>
+        </div>
+    </div>
+
+    <script>
+        // Variabelen voor de game
+        let clickCount = 0;
+        let currency = 0;
+        let clicksPerSecond = 0;
+        let upgradeCost = 10;
+        let upgradeMultiplier = 1;
+
+        // DOM-elementen
+        const clickButton = document.getElementById('clickButton');
+        const clickCountDisplay = document.getElementById('clickCount');
+        const currencyDisplay = document.getElementById('currency');
+        const upgradesContainer = document.getElementById('upgradeContainer');
+        const clicksPerSecondDisplay = document.getElementById('clicksPerSecond');
+
+        // Functie om te klikken
+        clickButton.addEventListener('click', () => {
+            clickCount += upgradeMultiplier;
+            currency += upgradeMultiplier;
+            updateDisplays();
+        });
+
+        // Functie om de weergave bij te werken
+        function updateDisplays() {
+            clickCountDisplay.textContent = clickCount;
+            currencyDisplay.textContent = currency;
+            clicksPerSecondDisplay.textContent = clicksPerSecond;
+        }
+
+        // Upgrade kopen
+        function buyUpgrade() {
+            if (currency >= upgradeCost) {
+                currency -= upgradeCost;
+                upgradeMultiplier += 1;
+                upgradeCost *= 2; // De prijs verdubbelt bij elke upgrade
+                clicksPerSecond += 1;
+                updateDisplays();
+                renderUpgrades();
+            } else {
+                alert('Je hebt niet genoeg geld!');
+            }
+        }
+
+        // Functie om upgrades weer te geven
+        function renderUpgrades() {
+            upgradesContainer.innerHTML = `
+                <p>Upgrade Kost: ${upgradeCost} 💰</p>
+                <button id="buyUpgradeButton">Upgrade: +1 per klik</button>
+            `;
+            document.getElementById('buyUpgradeButton').addEventListener('click', buyUpgrade);
+        }
+
+        // Interval om automatisch klikken toe te voegen
+        setInterval(() => {
+            clickCount += clicksPerSecond;
+            currency += clicksPerSecond;
+            updateDisplays();
+        }, 1000);
+
+        // Start de game
+        renderUpgrades();
+    </script>
+</body>
+</html>
